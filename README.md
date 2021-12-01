@@ -4,13 +4,27 @@ This project is a template for developing own extensions for *Omniverse Kit* bas
 
 # Setup
 
-For better developer experience it is recommended to create a folder link named `app` to the *Omniverse Kit* app installed from *Omniverse Launcher*. Convenience script to use is included, e.g.:
+For better developer experience it is recommended to create a folder link named `app` to the *Omniverse Kit* app installed from *Omniverse Launcher*. Convenience script to use is included.
+
+Run:
 
 ```
-> link_app.bat C:/Users/anovoselov/AppData/Local/ov/pkg/create-2021.3.4
+> link_app.bat
 ```
 
 If successful you should see `app` folder link in the root of this repo.
+
+If multiple Omniverse apps is installed script will select recommended one. Or you can explicitly pass an app:
+
+```
+> link_app.bat --app create
+```
+
+You can also just pass a path to create link to:
+
+```
+> link_app.bat --path "C:/Users/bob/AppData/Local/ov/pkg/create-2021.3.4"
+```
 
 # Explore
 
