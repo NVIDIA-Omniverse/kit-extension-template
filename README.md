@@ -1,22 +1,27 @@
-# Extension Project Template
+# *Omniverse Kit* Extensions Project Template
 
-This project is a template for developing extensions for *Omniverse Kit* based apps.
+This project is a template for developing extensions for *Omniverse Kit*.
 
-# Getting Started: Add a new extension to your *Omniverse App*
+# Getting Started
+
+## Install Omniverse and some Apps
 
 1. Install *Omniverse Launcher*: [download](https://www.nvidia.com/en-us/omniverse/download)
 2. Install and launch one of *Omniverse* apps in the Launcher. For instance: *Code*.
-3. Fork and clone this repo, for example in `C:\projects\kit-extension-template`
-4. In the *Omniverse App* open extension manager: *Window* &rarr; *Extensions*.
-5. In the *Extension Manager Window* open a settings page, with a small gear button in the top left bar.
-6. In the settings page there is a list of *Extension Search Paths*. Add cloned repo `exts` subfolder there as another search path: `C:\projects\kit-extension-template\exts`
+
+## Add a new extension to your *Omniverse App*
+
+1. Fork and clone this repo, for example in `C:\projects\kit-extension-template`
+2. In the *Omniverse App* open extension manager: *Window* &rarr; *Extensions*.
+3. In the *Extension Manager Window* open a settings page, with a small gear button in the top left bar.
+4. In the settings page there is a list of *Extension Search Paths*. Add cloned repo `exts` subfolder there as another search path: `C:\projects\kit-extension-template\exts`
 
 ![Extension Manager Window](/images/add-ext-search-path.png)
 
-7. Now you can find `omni.hello.world` extension in the top left search bar. Select and enable it.
-8. "My Window" window will pop up. *Extension Manager* watches for any file changes. You can try changing some code in this extension and see them applied immediately with a hotreload.
+5. Now you can find `omni.hello.world` extension in the top left search bar. Select and enable it.
+6. "My Window" window will pop up. *Extension Manager* watches for any file changes. You can try changing some code in this extension and see them applied immediately with a hotreload.
 
-## Few tips
+### Few tips
 
 * Now that `exts` folder was added to the search you can add new extensions to this folder and they will be automatically found by the *App*.
 * Look at the *Console* window for warnings and errors. It also has a small button to open current log file.
@@ -24,7 +29,7 @@ This project is a template for developing extensions for *Omniverse Kit* based a
 * Extension name is a folder name in `exts` folder, in this example: `omni.hello.world`. 
 * Most important thing extension has is a config file: `extension.toml`, take a peek.
 
-# Next Steps: Alternative way to add a new extension
+## Next Steps: Alternative way to add a new extension
 
 To get a better understanding and learn a few other things, we recommend following next steps:
 
@@ -51,7 +56,8 @@ Use `-h` for help:
     * extension search paths in *Extensions* window as in the previous section.
     * extension enabled in the list of extensions.
 
-5. If you look inside `omni.code.bat` or any other *Omniverse App*, they all run *Omniverse Kit* (`kit.exe`). *Omniverse Kit* is an extension runner. Think of it as `python.exe`. It is a small runtime, that enables all the basics, like settings, python, logging and searches for extensions. **Everything else is an extension.** You can run only this new extension without running any big *App* like *Code*:
+5. If you look inside `omni.code.bat` or any other *Omniverse App*, they all run *Omniverse Kit* (`kit.exe`). *Omniverse Kit* is the Omniverse Application runtime that powers *Apps* build out of extensions.
+Think of it as `python.exe`. It is a small runtime, that enables all the basics, like settings, python, logging and searches for extensions. **Everything else is an extension.** You can run only this new extension without running any big *App* like *Code*:
 
 
 ```bash
@@ -67,7 +73,7 @@ It starts much faster and will only have extensions enabled that are required fo
 
 You should see a menu in the top left. From here you can enable more extensions from the UI. 
 
-## Few tips
+### Few tips
 
 * In the *Extensions* window, press *Bread* button near the search bar and select *Show Extension Graph*. It will show how the current *App* comes to be: all extensions and dependencies.
 * Extensions system documentation: http://omniverse-docs.s3-website-us-east-1.amazonaws.com/kit-sdk/104.0/docs/guide/extensions.html
@@ -111,14 +117,26 @@ You can also just pass a path to create link to:
 
 # Adding a new extension
 
-TBD;
+Adding a new extension is as simple as copying and renaming existing one:
 
-# Sharing Your Extensions
+1. copy `exts/omni.hello.world` to `exts/[new extension name]`
+2. rename python module (namespace) in `exts/[new extension name]/omni/hello/world` to `exts/[new extension name]/[new python module]`
+3. update `exts/[new extension name]/config/extension.toml`, most importantly specify new python module to load:
 
-TBD;
+```toml
+[[python.module]]
+name = "[new python module]"
+```
 
-Direct link to a git repository can be added to *Omniverse Kit* extension search paths. 
+No restart is needed, you should be able to find and enable `[new extension name]` in extension manager.
 
-Link might look like this: `git://github.com/[user]/[your_repo].git?branch=main&dir=exts`
+# Sharing extensions
 
-Notice `exts` is repo subfolder with extensions. More information can be found in "Git URL as Extension Search Paths" section of developers manual.
+To make extension available to other users use [Github Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+
+1. Make sure the repo has [omniverse-kit-extension](https://github.com/topics/omniverse-kit-extension) topic set for auto discovery.
+2. For each new release increment extension version (in `extension.toml`) and update the changelog (in `docs/CHANGELOG.md`). [Semantic versionning](https://semver.org/) must be used to express severity of API changes.
+
+
+
+
