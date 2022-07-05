@@ -137,6 +137,5 @@ To make extension available to other users use [Github Releases](https://docs.gi
 1. Make sure the repo has [omniverse-kit-extension](https://github.com/topics/omniverse-kit-extension) topic set for auto discovery.
 2. For each new release increment extension version (in `extension.toml`) and update the changelog (in `docs/CHANGELOG.md`). [Semantic versionning](https://semver.org/) must be used to express severity of API changes.
 
-
-
-
+# Contributing
+The source code for this repository is provided as-is and we are not accepting outside contributions.
