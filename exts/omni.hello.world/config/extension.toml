@@ -9,6 +9,9 @@ description = "The simplest python extension example. Use it as a starting point
 # Path (relative to the root) or content of readme markdown file for UI.
 readme  = "docs/README.md"
 
+# Path (relative to the root) of changelog
+changelog = "docs/CHANGELOG.md"
+
 # URL of the extension source repository.
 repository = "https://github.com/NVIDIA-Omniverse/kit-extension-template"
 
