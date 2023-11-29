@@ -122,7 +122,7 @@ def get_captured_image_directory() -> str:
 
     """
 
-    extension_name = _get_extension_name()
+    extension_name = get_extension_name()
 
     capture_directory_name = carb.settings.get_settings().get_as_string(f"exts/{extension_name}/capture_directory")
 
