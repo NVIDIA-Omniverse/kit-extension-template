@@ -108,23 +108,14 @@ class ViewportCaptureResponseModel(BaseModel):
 
 async def capture(request: ViewportCaptureRequestModel,) -> ViewportCaptureResponseModel:
 
-    # For now, let's just print incoming request to the log to confirm all components of our extension are properly
-
-    # wired together:
-
-    carb.log_warn(f"Received a request to capture an image of \"{request.usd_stage_path}\".")
-
-
-    # Let's return a JSON response, indicating that the viewport capture operation failed to avoid misinterpreting the
-
-    # current lack of image output as a failure:
+    success, captured_image_path, error_message = await capture_viewport(usd_stage_path=request.usd_stage_path)
 
     return ViewportCaptureResponseModel(
 
-        success=False,
+        success=success,
 
-        captured_image_path=None,
+        captured_image_path=captured_image_path,
 
-        error_message="Image not yet captured.",
+        error_message=error_message,
 
     )
