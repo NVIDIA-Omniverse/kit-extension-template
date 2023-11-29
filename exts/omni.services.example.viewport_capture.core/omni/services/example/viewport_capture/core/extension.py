@@ -1,7 +1,13 @@
+import os
+
+
+from fastapi.staticfiles import StaticFiles
+
+
 import carb
 
-import omni.ext
 
+import omni.ext
 
 from omni.services.core import main
 
@@ -15,6 +21,15 @@ from omni.services.core import main
 from .services.capture import router
 
 
+# For convenience, let's also reuse the utility methods we already created to handle and format the storage location of
+
+# the captured images so they can be accessed by clients using the server, once API responses are issued from our
+
+# Service:
+
+from .utils import get_captured_image_directory, get_captured_image_path
+
+
 
 # Any class derived from `omni.ext.IExt` in the top level module (defined in the `python.module` section of the
 
@@ -22,7 +37,7 @@ from .services.capture import router
 
 # will be called. When disabled or when the application is shut down, its `on_shutdown()` will be called.
 
-class ViewportCaptureCoreExtension(omni.ext.IExt):
+class ViewportCaptureExtension(omni.ext.IExt):
 
     """Sample extension illustrating registration of a service."""
 
@@ -37,8 +52,6 @@ class ViewportCaptureCoreExtension(omni.ext.IExt):
 
         ext_name = ext_id.split("-")[0]
 
-        carb.log_info("ViewportCaptureCoreExtension startup")
-
 
         # At this point, we register our Service's `router` under the prefix we gave our API using the settings system,
 
@@ -49,10 +62,33 @@ class ViewportCaptureCoreExtension(omni.ext.IExt):
         main.register_router(router=router, prefix=url_prefix, tags=["Viewport capture"],)
 
 
+        # Proceed to create a temporary directory in the Omniverse application file hierarchy where captured stage
+
+        # images will be stored, until the application is shut down:
+
+        captured_stage_images_directory = get_captured_image_directory()
+
+        if not os.path.exists(captured_stage_images_directory):
+
+            os.makedirs(captured_stage_images_directory)
+
+
+        # Register this location as a mount, so its content is served by the web server bundled with the Omniverse
+
+        # application instance, thus making the captured image available on the network:
+
+        main.register_mount(
+
+            path=get_captured_image_path(),
+
+            app=StaticFiles(directory=captured_stage_images_directory, html=True),
+
+            name="captured-stage-images",
+
+        )
+
+
     def on_shutdown(self) -> None:
-
-        carb.log_info("ViewportCaptureCoreExtension shutdown")
-
 
         # When disabling the extension or shutting down the instance of the Omniverse application, let's make sure we
 
@@ -61,3 +97,5 @@ class ViewportCaptureCoreExtension(omni.ext.IExt):
         # part of the OpenAPI specification despite our handler function no longer being available:
 
         main.deregister_router(router=router)
+
+        main.deregister_mount(path=get_captured_image_path())
