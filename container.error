@@ -1,0 +1,40 @@
+Container command:
+$ docker run -it --entrypoint /bin/sh capture-stage-service:latest
+
+Error:
+# /opt/nvidia/omniverse/kit-sdk-launcher/kit --ext-folder /opt/nvidia/omniverse/services/ --enable omni.services.example.viewport_capture.core --allow-root --no-window
+[Info] [carb] Logging to file: /root/.nvidia-omniverse/logs/Kit/kit/104.0/kit_20231130_221631.log
+2023-11-30 22:16:31 [5ms] [Warning] [omni.ext.plugin] [ext: docs] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/docs' or '/opt/nvidia/omniverse/services/docs/config'
+2023-11-30 22:16:31 [5ms] [Warning] [omni.ext.plugin] [ext: omni] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/omni' or '/opt/nvidia/omniverse/services/omni/config'
+2023-11-30 22:16:31 [5ms] [Warning] [omni.ext.plugin] [ext: data] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/data' or '/opt/nvidia/omniverse/services/data/config'
+2023-11-30 22:16:31 [5ms] [Warning] [omni.ext.plugin] [ext: tests] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/tests' or '/opt/nvidia/omniverse/services/tests/config'
+[0.147s] Failed to solve some dependencies locally, syncing with extension registry...
+2023-11-30 22:16:32 [137ms] [Warning] [omni.ext.plugin] [ext: tests] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/tests' or '/opt/nvidia/omniverse/services/tests/config'
+2023-11-30 22:16:32 [137ms] [Warning] [omni.ext.plugin] [ext: docs] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/docs' or '/opt/nvidia/omniverse/services/docs/config'
+2023-11-30 22:16:32 [137ms] [Warning] [omni.ext.plugin] [ext: omni] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/omni' or '/opt/nvidia/omniverse/services/omni/config'
+2023-11-30 22:16:32 [137ms] [Warning] [omni.ext.plugin] [ext: data] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/data' or '/opt/nvidia/omniverse/services/data/config'
+[0.149s] [ext: omni.usd.config-1.0.0] startup
+[0.160s] [ext: omni.usd.libs-1.0.0] startup
+[0.255s] [ext: omni.kit.async_engine-0.0.0] startup
+[0.256s] [ext: omni.assets.plugins-0.0.0] startup
+[0.258s] [ext: omni.client-0.1.0] startup
+[0.264s] [ext: omni.kit.registry.nucleus-0.0.0] startup
+2023-11-30 22:16:32 [417ms] [Warning] [omni.client.plugin]  Tick: authentication: Could not resolve host name "kit-extensions.ov.nvidia.com"
+2023-11-30 22:16:32 [472ms] [Warning] [omni.client.plugin]  Tick: authentication: Could not resolve host name "kit-extensions.ov.nvidia.com"
+2023-11-30 22:16:32 [521ms] [Warning] [omni.client.plugin]  Tick: authentication: Could not resolve host name "kit-extensions.ov.nvidia.com"
+2023-11-30 22:16:32 [593ms] [Error] [omni.ext.plugin] Failed to resolve extension dependencies. Failure hints:
+        Can't find extension with name: omni.services.example.viewport_capture.core
+ Available versions:
+         (none found)
+
+2023-11-30 22:16:32 [593ms] [Error] [omni.kit.app.plugin] Exiting app because of dependency solver failure...
+[0.603s] [ext: omni.kit.registry.nucleus-0.0.0] shutdown
+[0.617s] [ext: omni.client-0.1.0] shutdown
+2023-11-30 22:16:32 [621ms] [Warning] [carb] [Plugin: carb.datasource-omniclient.plugin] Module /opt/nvidia/omniverse/kit-sdk-launcher/extscore/omni.client/bin/deps/libcarb.datasource-omniclient.plugin.so remained loaded after unload request
+2023-11-30 22:16:32 [623ms] [Warning] [carb] [Plugin: carb.datasource-omniclient.plugin] Module /opt/nvidia/omniverse/kit-sdk-launcher/extscore/omni.client/bin/deps/libcarb.datasource-omniclient.plugin.so remained loaded after unload request
+2023-11-30 22:16:32 [624ms] [Warning] [carb] unloadPlugin: Failed to find a plugin at: /opt/nvidia/omniverse/kit-sdk-launcher/extscore/omni.client/bin/deps/libcarb.datasource-omniclient.plugin.so.
+[0.633s] [ext: omni.assets.plugins-0.0.0] shutdown
+[0.634s] [ext: omni.kit.async_engine-0.0.0] shutdown
+[0.647s] [ext: omni.usd.libs-1.0.0] shutdown
+[0.662s] [ext: omni.usd.config-1.0.0] shutdown
+# 

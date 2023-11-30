@@ -1,6 +1,5 @@
 from typing import Optional
 from pydantic import BaseModel, Field
-import carb
 from omni.services.core import routers
 from omni.services.example.viewport_capture.core.utils import (
     capture_viewport
@@ -85,10 +84,6 @@ class ViewportCaptureResponseModel(BaseModel):
         description="Optional error message in case the operation was not successful.",
 
     )
-
-    # If required, add additional capture response options in subsequent iterations.
-
-    # [...]
 
 
 
