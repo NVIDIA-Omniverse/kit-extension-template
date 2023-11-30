@@ -2,7 +2,9 @@ from typing import Optional
 from pydantic import BaseModel, Field
 import carb
 from omni.services.core import routers
-
+from omni.services.example.viewport_capture.core.utils import (
+    capture_viewport
+)
 
 
 router = routers.ServiceAPIRouter()
