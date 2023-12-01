@@ -9,9 +9,9 @@ from omni.services.renderer.core.utils import (
 router = routers.ServiceAPIRouter()
 
 
-class RenderModel(BaseModel):
+class RenderRequestModel(BaseModel):
 
-    """Model describing the request to render an image."""
+    """Model describing the request to capture a viewport as an image."""
 
 
     usd_stage_path: str = Field(
@@ -24,14 +24,8 @@ class RenderModel(BaseModel):
 
     )
 
-    implants_path: str = Field(
-        ...,
-        title="Path of the implants file",
-        description="Location where the implants file can be found.",
-    )  
 
-
-class RendererResponseModel(BaseModel):
+class RenderResponseModel(BaseModel):
 
     """Model describing the response to the request to capture a viewport as an image."""
 
@@ -46,7 +40,7 @@ class RendererResponseModel(BaseModel):
 
     )
 
-    captured_image_path: [str] = Field(
+    captured_image_path: Optional[str] = Field(
 
         default=None,
 
@@ -67,11 +61,6 @@ class RendererResponseModel(BaseModel):
     )
 
 
-
-# Using the `@router` annotation, we'll tag our `capture` function handler to document the responses and path of the
-
-# API, once again using the OpenAPI specification format.
-
 @router.post(
 
     path="/capture",
@@ -80,15 +69,15 @@ class RendererResponseModel(BaseModel):
 
     description="Capture a given USD stage as an image.",
 
-    response_model=RendererResponseModel,
+    response_model=RenderResponseModel,
 
 )
 
-async def capture(request: RenderModel,) -> RendererResponseModel:
+async def capture(request: RenderRequestModel,) -> RenderResponseModel:
 
     success, captured_image_path, error_message = await capture_viewport(usd_stage_path=request.usd_stage_path)
 
-    return RendererResponseModel(
+    return RenderResponseModel(
 
         success=success,
 
