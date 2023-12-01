@@ -1,7 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel, Field
 from omni.services.core import routers
-from omni.services.example.viewport_capture.core.utils import (
+from omni.services.renderer.core.utils import (
     capture_viewport
 )
 

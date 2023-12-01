@@ -6,7 +6,7 @@ import omni.kit.test
 
 # Let's import the components for which we intend to provide unit tests from their module paths:
 
-from omni.services.example.viewport_capture.core.utils import (
+from omni.services.renderer.core.utils import (
 
     get_captured_image_directory,
 
@@ -56,14 +56,14 @@ class TestUtils(omni.kit.test.AsyncTestCase):
 
         settings = carb.settings.get_settings()
 
-        return settings.get_as_string(f"exts/omni.services.example.viewport_capture.core/{setting_key}")
+        return settings.get_as_string(f"exts/omni.services.renderer.core/{setting_key}")
 
 
     def test_extension_name_matches_default_extension_name(self) -> None:
 
         """Ensure the method to obtain the extension's name matches the actual extension name."""
 
-        self.assertEqual(get_extension_name(), "omni.services.example.viewport_capture.core")
+        self.assertEqual(get_extension_name(), "omni.services.renderer.core")
 
 
     def test_captured_image_directory_ends_with_configured_setting_value(self) -> None:
