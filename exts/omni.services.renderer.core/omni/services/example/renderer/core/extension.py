@@ -58,8 +58,9 @@ class ViewportCaptureExtension(omni.ext.IExt):
         # to facilitate its configuration and to ensure it is unique from all other extensions we may have enabled:
 
         url_prefix = carb.settings.get_settings().get_as_string(f"exts/{ext_name}/url_prefix")
+        print("url_prefix: ", url_prefix)
 
-        main.register_router(router=router, prefix=url_prefix, tags=["Viewport capture"],)
+        main.register_router(router=router, prefix=url_prefix, tags=["Render Image"],)
 
 
         # Proceed to create a temporary directory in the Omniverse application file hierarchy where captured stage
