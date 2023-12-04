@@ -7,7 +7,8 @@ import carb.tokens
 import omni.kit.actions.core
 import omni.kit.app
 import omni.usd
-
+import omni.kit.commands
+import omni.services.renderer.core.render as rend
 
 
 # Let's include a small utility method to facilitate obtaining the name of the extension our code is bundled with.
@@ -164,8 +165,10 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
 
 
     """
+    
+    # success: bool = omni.usd.get_context().open_stage(usd_stage_path)
 
-    success: bool = omni.usd.get_context().open_stage(usd_stage_path)
+    success: bool = True
 
     captured_image_path: Optional[str] = None
 
@@ -193,11 +196,22 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
             event.set()
 
 
-        omni.kit.actions.core.execute_action("omni.kit.menu.edit", "capture_screenshot", callback)
+        # omni.kit.actions.core.execute_action("omni.kit.menu.edit", "capture_screenshot", callback)
 
-        await event.wait()
+        # omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',prim_type='Cube')
 
-        await asyncio.sleep(delay=1.0)
+        # omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',prim_type='Cube')
+
+
+        rend.clack_clack()
+
+        menu_action_success = success
+
+        capture_screenshot_filepath = "/home"
+
+        # await event.wait()
+
+        # await asyncio.sleep(delay=1.0)
 
 
         if menu_action_success:
@@ -208,12 +222,14 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
 
             destination_filepath = os.path.join(get_captured_image_directory(), destination_filename)
 
-            shutil.move(src=capture_screenshot_filepath, dst=destination_filepath)
+            # shutil.move(src=capture_screenshot_filepath, dst=destination_filepath)
 
 
             # Record the final location of the captured image, along with the status of the operation:
 
-            captured_image_path = os.path.join(get_captured_image_path(), destination_filename)
+            # captured_image_path = os.path.join(get_captured_image_path(), destination_filename)
+
+            
 
             success = menu_action_success
 
