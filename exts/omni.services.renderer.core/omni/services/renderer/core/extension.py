@@ -37,7 +37,7 @@ from .utils import get_captured_image_directory, get_captured_image_path
 
 # will be called. When disabled or when the application is shut down, its `on_shutdown()` will be called.
 
-class ViewportCaptureExtension(omni.ext.IExt):
+class RenderExtension(omni.ext.IExt):
 
     """Sample extension illustrating registration of a service."""
 

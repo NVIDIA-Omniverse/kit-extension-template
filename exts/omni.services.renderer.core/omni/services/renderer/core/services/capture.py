@@ -20,7 +20,7 @@ router = routers.ServiceAPIRouter()
 
 # the OpenAPI specification format.
 
-class ViewportCaptureRequestModel(BaseModel):
+class RenderRequestModel(BaseModel):
 
     """Model describing the request to capture a viewport as an image."""
 
@@ -50,7 +50,7 @@ class ViewportCaptureRequestModel(BaseModel):
 
 # specification format.
 
-class ViewportCaptureResponseModel(BaseModel):
+class RenderResponseModel(BaseModel):
 
     """Model describing the response to the request to capture a viewport as an image."""
 
@@ -99,15 +99,15 @@ class ViewportCaptureResponseModel(BaseModel):
 
     description="Capture a given USD stage as an image.",
 
-    response_model=ViewportCaptureResponseModel,
+    response_model=RenderResponseModel,
 
 )
 
-async def capture(request: ViewportCaptureRequestModel,) -> ViewportCaptureResponseModel:
+async def capture(request: RenderRequestModel,) -> RenderResponseModel:
 
     success, captured_image_path, error_message = await capture_viewport(usd_stage_path=request.usd_stage_path)
 
-    return ViewportCaptureResponseModel(
+    return RenderResponseModel(
 
         success=success,
 
