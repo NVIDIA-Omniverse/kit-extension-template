@@ -9,7 +9,18 @@ from omni.services.renderer.core.utils import (
 router = routers.ServiceAPIRouter()
 
 
-class RenderRequestModel(BaseModel):
+
+# Let's define a model to handle the parsing of incoming requests.
+
+#
+
+# Using `pydantic` to handle data-parsing duties makes it less cumbersome for us to do express types, default values,
+
+# minimum/maximum values, etc. while also taking care of documenting input and output properties of our service using
+
+# the OpenAPI specification format.
+
+class ViewportCaptureRequestModel(BaseModel):
 
     """Model describing the request to capture a viewport as an image."""
 
@@ -24,8 +35,22 @@ class RenderRequestModel(BaseModel):
 
     )
 
+    # If required, add additional capture response options in subsequent iterations.
 
-class RenderResponseModel(BaseModel):
+    # [...]
+
+
+# We will also define a model to handle the delivery of responses back to clients.
+
+#
+
+# Just like the model used to handle incoming requests, the model to deliver responses will not only help define
+
+# default values of response parameters, but also in documenting the values clients can expect using the OpenAPI
+
+# specification format.
+
+class ViewportCaptureResponseModel(BaseModel):
 
     """Model describing the response to the request to capture a viewport as an image."""
 
@@ -61,6 +86,11 @@ class RenderResponseModel(BaseModel):
     )
 
 
+
+# Using the `@router` annotation, we'll tag our `capture` function handler to document the responses and path of the
+
+# API, once again using the OpenAPI specification format.
+
 @router.post(
 
     path="/capture",
@@ -69,15 +99,15 @@ class RenderResponseModel(BaseModel):
 
     description="Capture a given USD stage as an image.",
 
-    response_model=RenderResponseModel,
+    response_model=ViewportCaptureResponseModel,
 
 )
 
-async def capture(request: RenderRequestModel,) -> RenderResponseModel:
+async def capture(request: ViewportCaptureRequestModel,) -> ViewportCaptureResponseModel:
 
     success, captured_image_path, error_message = await capture_viewport(usd_stage_path=request.usd_stage_path)
 
-    return RenderResponseModel(
+    return ViewportCaptureResponseModel(
 
         success=success,
 
