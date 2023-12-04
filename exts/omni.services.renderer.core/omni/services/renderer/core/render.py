@@ -8,7 +8,7 @@ import asyncio
 from scipy.spatial.transform import Rotation as R
 
 def parse_csv(csv_path):
-                    return np.loadtxt(csv_path, delimiter=',')
+    return np.loadtxt(csv_path, delimiter=',')
 
 def clack_clack():
     print("clack_clack")
@@ -99,3 +99,46 @@ def clack_clack():
             #         )
             #     # pass
             rep.orchestrator.run()
+
+class Implant:
+    def __init__(self, name, usd_path, prop_type, transforms):
+        self.name = name
+        self.usd_path = usd_path
+        self.prop_type = prop_type
+        self.transforms: list = transforms
+    
+    def load(self):
+        pass
+
+class Entity:
+    def __init__(self, entity_id, prim_path) -> None:
+        self.entity_id = entity_id
+        self.prim_path = prim_path
+    
+    def load(self):
+        pass
+
+class RenderViews:
+    def __init__(self, camera_path, entity_id, visibility):
+        self.camera_path = camera_path
+        self.entity_id = entity_id
+        self.visibility = visibility
+    
+    def load(self):
+        pass
+
+class RenderSettings:
+     def __init__(self) -> None:
+          pass
+     
+     def load(self):
+          pass
+
+def render_scene(entities, implants, render_views, render_settings):
+        """
+        Description:
+        Render a scene with the given entities and implants.
+        Args:
+        entities (list): List of entities to render.
+        """
+        pass
