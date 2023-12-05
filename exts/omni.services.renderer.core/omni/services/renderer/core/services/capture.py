@@ -4,6 +4,12 @@ from omni.services.core import routers
 from omni.services.renderer.core.utils import (
     capture_viewport
 )
+# from omni.services.renderer.core.models import (
+#     Entities,
+#     Implants,
+#     RenderViews,
+#     RenderSettings
+# )
 
 
 router = routers.ServiceAPIRouter()
@@ -24,6 +30,29 @@ class RenderRequestModel(BaseModel):
 
     """Model describing the request to capture a viewport as an image."""
 
+    # entities: dict[str] = Field(
+    #     ..., # the ... is a placeholder for the default value
+    #     title="Entities",
+    #     description="Dictionary of entities to and their prim paths."
+    # )
+
+    # implants: list[str,str,str] = Field(
+    #     ..., # the ... is a placeholder for the default value
+    #     title="Implants",
+    #     description="List to apply to specific entities.",
+    # )
+
+    # render_views: list(tuple(str,str,str)) = Field(
+    #     ..., # the ... is a placeholder for the default value
+    #     title="Render Views",
+    #     description="List of render views to capture as each implant is applied.",
+    # )
+
+    # render_settings: str = Field(
+    #     ..., # the ... is a placeholder for the default value
+    #     title="Render Settings",
+    #     description="Unsure what will be in this.",
+    # )
 
     usd_stage_path: str = Field(
 
@@ -104,8 +133,19 @@ class RenderResponseModel(BaseModel):
 )
 
 async def capture(request: RenderRequestModel,) -> RenderResponseModel:
+    # Unpack the request parameters into variables to pass to the `capture_viewport` function
+    # entities = Entities.load(request.entities)
+    # implants = Implants.load(request.implants)
+    # render_views = RenderViews.load(request.render_views)
+    # render_settings = RenderSettings.load(request.render_settings)
 
-    success, captured_image_path, error_message = await capture_viewport(usd_stage_path=request.usd_stage_path)
+    success, captured_image_path, error_message = await capture_viewport( # await render_scene (
+        usd_stage_path=request.usd_stage_path,
+        # entitites=entities,
+        # implants=implants,
+        # render_views=render_views,
+        # render_settings=render_settings,       
+    )
 
     return RenderResponseModel(
 

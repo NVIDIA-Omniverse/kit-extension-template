@@ -6,6 +6,7 @@ import carb.settings
 import carb.tokens
 import omni.kit.actions.core
 import omni.kit.app
+# from omni.services.renderer.core.models import Entity, Implant, RenderSetting, RenderView
 import omni.usd
 import omni.kit.commands
 import omni.services.renderer.core.render as rend
@@ -145,7 +146,13 @@ def get_captured_image_directory() -> str:
 
 # name when our Service issues its response.
 
-async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Optional[str]]:
+async def capture_viewport(
+        usd_stage_path: str
+        # entitites: list[Entity],
+        # implants: list[Implant],
+        # render_views: list[RenderView],
+        # render_settings: list[RenderSetting],    
+    ) -> Tuple[bool, Optional[str], Optional[str]]:
 
     """
 
@@ -153,8 +160,11 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
 
 
     Args:
-
-        usd_stage_path (str): Path of the USD stage to open in the application's viewport.
+        # usd_stage_path (str): Path of the USD stage to open in the application's viewport.
+        entitites (list[Entity]):
+        implants (list[Implant]):: 
+        render_views (list[RenderViews]):
+        render_settings (list[RenderSettings]):
 
 
     Returns:
@@ -169,6 +179,8 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
     # success: bool = omni.usd.get_context().open_stage(usd_stage_path)
 
     success: bool = True
+
+    # capture_paths: list[str] = []
 
     captured_image_path: Optional[str] = None
 
@@ -202,7 +214,10 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
 
         # omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',prim_type='Cube')
 
+        # capture_paths = rend.clack_clack()
 
+        # success  = len(capture_paths) > 0
+        
         rend.clack_clack()
 
         menu_action_success = success
@@ -239,3 +254,4 @@ async def capture_viewport(usd_stage_path: str) -> Tuple[bool, Optional[str], Op
 
 
     return (success, captured_image_path, error_message)
+    # return (success, capture_paths, error_message)

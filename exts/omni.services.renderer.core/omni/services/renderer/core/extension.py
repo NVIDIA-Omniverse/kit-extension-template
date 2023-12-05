@@ -74,6 +74,8 @@ class RenderExtension(omni.ext.IExt):
             os.makedirs(captured_stage_images_directory)
 
 
+        print (f"Output Dir: {captured_stage_images_directory}")
+        
         # Register this location as a mount, so its content is served by the web server bundled with the Omniverse
 
         # application instance, thus making the captured image available on the network:
