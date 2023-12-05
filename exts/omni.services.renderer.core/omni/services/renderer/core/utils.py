@@ -6,7 +6,7 @@ import carb.settings
 import carb.tokens
 import omni.kit.actions.core
 import omni.kit.app
-# from omni.services.renderer.core.models import Entity, Implant, RenderSetting, RenderView
+from omni.services.renderer.core.models import Entities, Implants, RenderSettings, RenderViews
 import omni.usd
 import omni.kit.commands
 import omni.services.renderer.core.render as rend
@@ -148,10 +148,10 @@ def get_captured_image_directory() -> str:
 
 async def capture_viewport(
         usd_stage_path: str
-        # entitites: list[Entity],
-        # implants: list[Implant],
-        # render_views: list[RenderView],
-        # render_settings: list[RenderSetting],    
+        # entitites: Entities,
+        # implants: Implants,
+        # render_views: RenderViews,
+        # render_settings: RenderSettings,    
     ) -> Tuple[bool, Optional[str], Optional[str]]:
 
     """

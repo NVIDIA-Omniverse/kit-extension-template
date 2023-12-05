@@ -1,3 +1,4 @@
+from typing import List, Tuple
 from pydantic import dataclasses
 
 
@@ -11,7 +12,7 @@ class Implant:
     name: str
     usd_path: str
     prop_type: str
-    transforms: list
+    transforms: List[str]
 
 @dataclasses.dataclass
 class RenderView:
@@ -21,7 +22,7 @@ class RenderView:
 
 @dataclasses.dataclass
 class RenderSetting:
-    resolution: (int, int)
+    resolution: Tuple[int, int]
 
 class Payload_Base:
     @classmethod
@@ -29,6 +30,11 @@ class Payload_Base:
         raise NotImplementedError
 
 class Entities(Payload_Base):
+    def __init__(
+            self, 
+            entities: List[Entity]
+        ) -> None:
+        self.entities = entities
 
     @classmethod
     def load(self, entities):
@@ -47,6 +53,11 @@ class Entities(Payload_Base):
         ]
 
 class Implants(Payload_Base):
+    def __init__(
+            self, 
+            implants: List[Implant]
+        ) -> None:
+        self.implants = implants
     
     @classmethod
     def load(self, implants):
@@ -57,10 +68,11 @@ class Implants(Payload_Base):
         ]
 
 class RenderViews(Payload_Base):
-    def __init__(self, camera_path, entity_id, visibility):
-        self.camera_path = camera_path
-        self.entity_id = entity_id
-        self.visibility = visibility
+    def __init__(
+            self, 
+            views: List[RenderView]
+        ) -> None:
+        self.views = views
     
     @classmethod
     def load(self, render_views):
@@ -71,8 +83,11 @@ class RenderViews(Payload_Base):
         ]
 
 class RenderSettings(Payload_Base):
-     def __init__(self, resolution) -> None:
-          self.resolution = resolution
+     def __init__(
+             self, 
+             settings: List[RenderSetting]
+        ) -> None:
+          self.settings = settings
      
      @classmethod
      def load(self, render_settings):
