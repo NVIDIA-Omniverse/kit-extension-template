@@ -11,23 +11,10 @@ from omni.services.renderer.core.models import (
     RenderSettings
 )
 
-
 router = routers.ServiceAPIRouter()
 
-
-
-# Let's define a model to handle the parsing of incoming requests.
-
-#
-
-# Using `pydantic` to handle data-parsing duties makes it less cumbersome for us to do express types, default values,
-
-# minimum/maximum values, etc. while also taking care of documenting input and output properties of our service using
-
-# the OpenAPI specification format.
-
+# Define a model to handle the parsing of incoming requests.
 class RenderRequestModel(BaseModel):
-
     """Model describing the request to capture a viewport as an image."""
     usd_path: str
     output_path: str
@@ -36,56 +23,8 @@ class RenderRequestModel(BaseModel):
     render_views: RenderViews
     render_settings: RenderSettings
 
-    
-    # entities: Entities = Field(
-    #     ..., # the ... is a placeholder for the default value
-    #     title="Entities",
-    #     description="Dictionary of entities to and their prim paths."
-    # )
 
-    # implants: Implants = Field(
-    #     ..., # the ... is a placeholder for the default value
-    #     title="Implants",
-    #     description="List to apply to specific entities.",
-    # )
-
-    # render_views: RenderViews = Field(
-    #     ..., # the ... is a placeholder for the default value
-    #     title="Render Views",
-    #     description="List of render views to capture as each implant is applied.",
-    # )
-
-    # render_settings: RenderSettings = Field(
-    #     ..., # the ... is a placeholder for the default value
-    #     title="Render Settings",
-    #     description="Unsure what will be in this.",
-    # )
-
-    # usd_stage_path: str = Field(
-
-    #     ...,
-
-    #     title="Path of the USD stage for which to capture an image",
-
-    #     description="Location where the USD stage to capture can be found.",
-
-    # )
-
-    # If required, add additional capture response options in subsequent iterations.
-
-    # [...]
-
-
-# We will also define a model to handle the delivery of responses back to clients.
-
-#
-
-# Just like the model used to handle incoming requests, the model to deliver responses will not only help define
-
-# default values of response parameters, but also in documenting the values clients can expect using the OpenAPI
-
-# specification format.
-
+# Define a model to handle the delivery of responses back to clients.
 class RenderResponseModel(BaseModel):
 
     """Model describing the response to the request to capture a viewport as an image."""
