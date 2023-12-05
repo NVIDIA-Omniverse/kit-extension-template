@@ -153,6 +153,7 @@ def get_captured_image_directory() -> str:
 
 async def capture_viewport(
         usd_stage_path: str
+        # output_path: str,
         # entitites: Entities,
         # implants: Implants,
         # render_views: RenderViews,
