@@ -1,16 +1,16 @@
 import asyncio
 import os
 import shutil
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 import carb.settings
 import carb.tokens
 import omni.kit.actions.core
 import omni.kit.app
 from omni.services.renderer.core.models import (
-    Entities, 
-    Implants, 
-    RenderSettings, 
-    RenderViews
+    Entity,
+    Implant, 
+    RenderSettings,
+    RenderView, 
 )
 import omni.usd
 import omni.kit.commands
@@ -152,12 +152,12 @@ def get_captured_image_directory() -> str:
 # name when our Service issues its response.
 
 async def capture_viewport(
-        usd_stage_path: str
-        # output_path: str,
-        # entitites: Entities,
-        # implants: Implants,
-        # render_views: RenderViews,
-        # render_settings: RenderSettings,    
+        usd_stage_path: str,
+        output_path: str,
+        entitites: List[Entity],
+        implants: List[Implant],
+        render_views: List[RenderView],
+        render_settings: RenderSettings,    
     ) -> Tuple[bool, Optional[str], Optional[str]]:
 
     """

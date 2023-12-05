@@ -5,9 +5,9 @@ from omni.services.renderer.core.utils import (
     capture_viewport
 )
 from omni.services.renderer.core.models import (
-    Entities,
-    Implants,
-    RenderViews,
+    Entity,
+    Implant,
+    RenderView,
     RenderSettings
 )
 
@@ -17,10 +17,10 @@ router = routers.ServiceAPIRouter()
 class RenderRequestModel(BaseModel):
     """Model describing the request to capture a viewport as an image."""
     usd_path: str
-    output_path: str
-    entities: Entities
-    implants: Implants
-    render_views: RenderViews
+    output_dir: str
+    entities: List[Entity] = Field(...)
+    implants: List[Implant] = Field(...)
+    render_views: List[RenderView] = Field(...)
     render_settings: RenderSettings
 
 
@@ -79,19 +79,13 @@ class RenderResponseModel(BaseModel):
 )
 
 async def capture(request: RenderRequestModel,) -> RenderResponseModel:
-    # Unpack the request parameters into variables to pass to the `capture_viewport` function
-    entities = Entities.load(request.entities)
-    implants = Implants.load(request.implants)
-    render_views = RenderViews.load(request.render_views)
-    render_settings = RenderSettings.load(request.render_settings)
-
     success, captured_image_path, error_message = await capture_viewport( # await render_scene (
-        usd_stage_path=request.usd_stage_path,
-        # output_path=request.output_path,
-        # entitites=entities,
-        # implants=implants,
-        # render_views=render_views,
-        # render_settings=render_settings,       
+        usd_stage_path=request.usd_path,
+        output_path=request.output_dir,
+        entitites=request.entities,
+        implants=request.implants,
+        render_views=request.render_views,
+        render_settings=request.render_settings,       
     )
 
     return RenderResponseModel(
