@@ -2,7 +2,7 @@ Container command:
 $ docker run -it --entrypoint /bin/sh capture-stage-service:latest
 
 Error:
-# /opt/nvidia/omniverse/kit-sdk-launcher/kit --ext-folder /opt/nvidia/omniverse/services/ --enable omni.services.example.viewport_capture.core --allow-root --no-window
+# /opt/nvidia/omniverse/kit-sdk-launcher/kit --ext-folder /opt/nvidia/omniverse/services/ --enable omni.services.renderer.core --allow-root --no-window
 [Info] [carb] Logging to file: /root/.nvidia-omniverse/logs/Kit/kit/104.0/kit_20231130_221631.log
 2023-11-30 22:16:31 [5ms] [Warning] [omni.ext.plugin] [ext: docs] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/docs' or '/opt/nvidia/omniverse/services/docs/config'
 2023-11-30 22:16:31 [5ms] [Warning] [omni.ext.plugin] [ext: omni] Extensions config 'extension.toml' doesn't exist '/opt/nvidia/omniverse/services/omni' or '/opt/nvidia/omniverse/services/omni/config'
@@ -23,7 +23,7 @@ Error:
 2023-11-30 22:16:32 [472ms] [Warning] [omni.client.plugin]  Tick: authentication: Could not resolve host name "kit-extensions.ov.nvidia.com"
 2023-11-30 22:16:32 [521ms] [Warning] [omni.client.plugin]  Tick: authentication: Could not resolve host name "kit-extensions.ov.nvidia.com"
 2023-11-30 22:16:32 [593ms] [Error] [omni.ext.plugin] Failed to resolve extension dependencies. Failure hints:
-        Can't find extension with name: omni.services.example.viewport_capture.core
+        Can't find extension with name: omni.services.renderer.core
  Available versions:
          (none found)
 
