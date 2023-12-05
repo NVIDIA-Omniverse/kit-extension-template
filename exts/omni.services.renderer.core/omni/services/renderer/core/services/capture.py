@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Dict, List, Optional
 from pydantic import BaseModel, Field
 from omni.services.core import routers
 from omni.services.renderer.core.utils import (
@@ -29,40 +29,47 @@ router = routers.ServiceAPIRouter()
 class RenderRequestModel(BaseModel):
 
     """Model describing the request to capture a viewport as an image."""
+    usd_path: str
+    output_path: str
+    entities: Entities
+    implants: Implants
+    render_views: RenderViews
+    render_settings: RenderSettings
 
-    # entities: dict[str] = Field(
+    
+    # entities: Entities = Field(
     #     ..., # the ... is a placeholder for the default value
     #     title="Entities",
     #     description="Dictionary of entities to and their prim paths."
     # )
 
-    # implants: list[str,str,str] = Field(
+    # implants: Implants = Field(
     #     ..., # the ... is a placeholder for the default value
     #     title="Implants",
     #     description="List to apply to specific entities.",
     # )
 
-    # render_views: list(tuple(str,str,str)) = Field(
+    # render_views: RenderViews = Field(
     #     ..., # the ... is a placeholder for the default value
     #     title="Render Views",
     #     description="List of render views to capture as each implant is applied.",
     # )
 
-    # render_settings: str = Field(
+    # render_settings: RenderSettings = Field(
     #     ..., # the ... is a placeholder for the default value
     #     title="Render Settings",
     #     description="Unsure what will be in this.",
     # )
 
-    usd_stage_path: str = Field(
+    # usd_stage_path: str = Field(
 
-        ...,
+    #     ...,
 
-        title="Path of the USD stage for which to capture an image",
+    #     title="Path of the USD stage for which to capture an image",
 
-        description="Location where the USD stage to capture can be found.",
+    #     description="Location where the USD stage to capture can be found.",
 
-    )
+    # )
 
     # If required, add additional capture response options in subsequent iterations.
 
@@ -134,13 +141,14 @@ class RenderResponseModel(BaseModel):
 
 async def capture(request: RenderRequestModel,) -> RenderResponseModel:
     # Unpack the request parameters into variables to pass to the `capture_viewport` function
-    # entities = Entities.load(request.entities)
-    # implants = Implants.load(request.implants)
-    # render_views = RenderViews.load(request.render_views)
-    # render_settings = RenderSettings.load(request.render_settings)
+    entities = Entities.load(request.entities)
+    implants = Implants.load(request.implants)
+    render_views = RenderViews.load(request.render_views)
+    render_settings = RenderSettings.load(request.render_settings)
 
     success, captured_image_path, error_message = await capture_viewport( # await render_scene (
         usd_stage_path=request.usd_stage_path,
+        # output_path=request.output_path,
         # entitites=entities,
         # implants=implants,
         # render_views=render_views,
