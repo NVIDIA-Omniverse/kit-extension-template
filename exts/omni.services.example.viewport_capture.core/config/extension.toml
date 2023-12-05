@@ -1,0 +1,102 @@
+[package]
+
+# Semantic versioning is used: https://semver.org
+
+version = "1.0.0"
+
+
+# The title and description fields are primarily for displaying extension info in UI:
+
+title = "Viewport capture service"
+
+description = "Sample service example demonstrating the creation of microservices using Omniverse."
+
+
+# Path (relative to the root), or content of the extension's "readme" file, in Markdown format:
+
+readme = "docs/README.md"
+
+
+# Path (relative to the root) of the extension's changelog file, in Markdown format:
+
+changelog = "docs/CHANGELOG.md"
+
+
+# URL of the extension source repository:
+
+repository = "https://github.com/NVIDIA-Omniverse/kit-extension-template"
+
+
+# Category of the extension:
+
+category = "services"
+
+
+# Keywords of the extension:
+
+keywords = ["kit", "service", "example"]
+
+
+# Icon to show in the extension manager:
+
+icon = "data/icon.png"
+
+
+# Preview to show in the extension manager:
+
+preview_image = "data/preview.png"
+
+
+# Use omni.ui to build simple UI
+
+[dependencies]
+
+"omni.kit.menu.edit" = {}
+
+"omni.kit.actions.core" = {}
+
+"omni.services.core" = {}
+
+"omni.services.transport.server.http" = {}
+
+"omni.usd" = {}
+
+
+# Main Python module this extension provides, it will be publicly available as
+
+# "import omni.services.example.viewport_capture.core":
+
+[[python.module]]
+
+name = "omni.services.example.viewport_capture.core"
+
+
+# Settings of our extension:
+
+[settings.exts."omni.services.example.viewport_capture.core"]
+
+# URL prefix where the service will be mounted, where our API will be available to handle incoming requests.
+
+#
+
+# Defining this as a setting makes it easy to change or rebrand the endpoint using only command-line or KIT-file
+
+# configuration instructions, should extensions ever feature conflicting endpoint naming conventions.
+
+url_prefix = "/viewport-capture"
+
+
+# Path from where the captured images will be served from, when exposed to clients.
+
+#
+
+# This path will be mounted as a child of the `url_prefix` setting, and expressed as a formatted join of the
+
+# `{url_prefix}{capture_path}` settings.
+
+capture_path = "/static"
+
+
+# Name of the directory on the server where captured images will be stored:
+
+capture_directory = "captured_stage_images"
