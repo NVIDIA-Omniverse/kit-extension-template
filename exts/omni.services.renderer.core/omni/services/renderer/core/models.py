@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from pydantic import dataclasses
 
 
@@ -19,10 +19,6 @@ class RenderView:
     camera_path: str
     entity_id: str
     visibility: str
-
-@dataclasses.dataclass
-class RenderSetting:
-    resolution: Tuple[int, int]
 
 class Payload_Base:
     @classmethod
@@ -82,17 +78,13 @@ class RenderViews(Payload_Base):
             in render_views
         ]
 
-class RenderSettings(Payload_Base):
+class RenderSettings:
      def __init__(
              self, 
-             settings: List[RenderSetting]
+             settings: dict
         ) -> None:
-          self.settings = settings
-     
-     @classmethod
-     def load(self, render_settings):
-        return [
-            RenderSetting(resolution)
-            for resolution
-            in render_settings
-        ]
+        self.img_w: settings["img_w"]
+        self.img_h: settings["img_h"]
+        self.transparency: settings["transparency"]
+        self.color_mode: settings["color_mode"]
+        self.samples: int = settings["samples"]

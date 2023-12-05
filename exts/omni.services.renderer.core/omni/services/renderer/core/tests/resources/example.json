@@ -1,0 +1,27 @@
+{
+    "entities": {
+        "entity_id_001": "/shared/sample/path/entity_001",
+        "entity_id_002": "/shared/sample/path/entity_002",
+        "entity_id_003": "/shared/sample/path/entity_003",
+        "entity_id_004": "/shared/sample/path/entity_004",
+        "entity_id_005": "/shared/sample/path/entity_005"
+    },
+    "implants": [
+        ["entity_id_001", "propType_001", "dataset_name_001"],
+        ["entity_id_001", "propType_002", "dataset_name_002"],
+        ["entity_id_002", "propType_001", "dataset_name_003"],
+        ["entity_id_002", "propType_002", "dataset_name_004"],
+        ["entity_id_002", "propType_003", "dataset_name_005"]
+    ],
+    "render_views": [
+        ["camera_id_001", "entity_id_004", "visible"],
+        ["camera_id_002", "entity_id_005", "visible"]
+    ],
+    "render_settings": {
+        "img_w": 1080,
+        "img_h": 720,
+        "transparency": "true",
+        "color_mode": "RGBA",
+        "samples": 100
+    }
+}

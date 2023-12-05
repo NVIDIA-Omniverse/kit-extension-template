@@ -4,12 +4,12 @@ from omni.services.core import routers
 from omni.services.renderer.core.utils import (
     capture_viewport
 )
-# from omni.services.renderer.core.models import (
-#     Entities,
-#     Implants,
-#     RenderViews,
-#     RenderSettings
-# )
+from omni.services.renderer.core.models import (
+    Entities,
+    Implants,
+    RenderViews,
+    RenderSettings
+)
 
 
 router = routers.ServiceAPIRouter()
