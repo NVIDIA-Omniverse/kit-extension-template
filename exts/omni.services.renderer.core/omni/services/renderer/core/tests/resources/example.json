@@ -1,26 +1,88 @@
 {
-    "entities": {
-        "entity_id_001": "/shared/sample/path/entity_001",
-        "entity_id_002": "/shared/sample/path/entity_002",
-        "entity_id_003": "/shared/sample/path/entity_003",
-        "entity_id_004": "/shared/sample/path/entity_004",
-        "entity_id_005": "/shared/sample/path/entity_005"
-    },
+    "usd_path": "/shared/sample/path/data1.usd",
+    "output_dir": "/shared/sample/path/output",
+    "entities": [
+        {
+            "entity_id": 1,
+            "entity_type": "Bone",
+            "prim_path": "/World/Bone_001"
+        },
+        {
+            "entity_id": 2,
+            "entity_type": "Bone",
+            "prim_path": "/World/Bone_002"
+        },
+        {
+            "entity_id": 3,
+            "entity_type": "Bone",
+            "prim_path": "/World/Bone_003"
+        },
+        {
+            "entity_id": 4,
+            "entity_type": "Camera",
+            "prim_path": "/World/Camera_001"
+        },
+        {
+            "entity_id": 5,
+            "entity_type": "Camera",
+            "prim_path": "/World/Camera_002"
+        }
+    ],
     "implants": [
-        ["entity_id_001", "propType_001", "dataset_name_001"],
-        ["entity_id_001", "propType_002", "dataset_name_002"],
-        ["entity_id_002", "propType_001", "dataset_name_003"],
-        ["entity_id_002", "propType_002", "dataset_name_004"],
-        ["entity_id_002", "propType_003", "dataset_name_005"]
+        {
+            "entity_id": 1, 
+            "prop_type": "Location", 
+            "dataset_path": "/shared/sample/path/data1.h5",
+            "dataset_key": "bone_001_location"
+        },
+        {
+            "entity_id": 1, 
+            "prop_type": "Quaternion", 
+            "dataset_path": "/shared/sample/path/data2.h5",
+            "dataset_key": "bone_001_rotation"
+        },
+        {
+            "entity_id": 2, 
+            "prop_type": "Location",
+            "dataset_path": "/shared/sample/path/data1.h5",
+            "dataset_key": "bone_002_location"
+        },
+        {
+            "entity_id": 2, 
+            "prop_type": "Quaternion", 
+            "dataset_path": "/shared/sample/path/data2.h5",
+            "dataset_key": "bone_002_rotation"
+        },
+        {
+            "entity_id": 3, 
+            "prop_type": "Location", 
+            "dataset_path": "/shared/sample/path/data1.h5",
+            "dataset_key": "bone_003_location"
+        },
+        {
+            "entity_id": 3, 
+            "prop_type": "Quaternion", 
+            "dataset_path": "/shared/sample/path/data1.h5",
+            "dataset_key": "bone_003_rotation"
+        }
+
     ],
     "render_views": [
-        ["camera_id_001", "entity_id_004", "visible"],
-        ["camera_id_002", "entity_id_005", "visible"]
+        {
+            "camera_id": "/World/camera_id_001", 
+            "entity_id": 4, 
+            "visibility": "visible"
+        },
+        {
+            "camera_id": "/World/camera_id_002", 
+            "entity_id": 5, 
+            "visibility": "visible"
+        }
     ],
     "render_settings": {
         "img_w": 1080,
         "img_h": 720,
-        "transparency": "true",
+        "transparency": true,
         "color_mode": "RGBA",
         "samples": 100
     }
