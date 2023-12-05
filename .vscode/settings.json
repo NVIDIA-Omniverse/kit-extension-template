@@ -6,11 +6,9 @@
 
     // Python modules search paths:
     "python.analysis.extraPaths": [
-        "${workspaceFolder}/exts/omni.hello.world",
-        "${workspaceFolder}/exts/omni.services.example.viewport_capture.core",
         "${workspaceFolder}/exts/omni.services.renderer.core",
         "${workspaceFolder}/app/kit/extscore/omni.kit.pip_archive/pip_prebundle",
-        "${workspaceFolder}/app/kit/plugins/bindings-python",
+        "${workspaceFolder}/app/Skit/plugins/bindings-python",
         "${workspaceFolder}/app/kit/extsphysics/omni.blockworld-1.3.10-5.1",
         "${workspaceFolder}/app/kit/extsphysics/omni.convexdecomposition-1.3.10",
         "${workspaceFolder}/app/kit/extsphysics/omni.kit.property.physx",
