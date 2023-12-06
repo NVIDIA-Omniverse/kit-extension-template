@@ -6,6 +6,7 @@ import omni.usd
 import time
 import asyncio
 from scipy.spatial.transform import Rotation as R
+import os
 
 def parse_csv(csv_path):
     return np.loadtxt(csv_path, delimiter=',')
@@ -17,7 +18,8 @@ def clack_clack():
     from omni.kit.viewport.utility import get_active_viewport
 
     with rep.new_layer(name="layer_1"):
-        usd = '/home/manifold6/Documents/clack/clack_2.usd'
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        usd = os.path.join(script_dir, "resources/usd/clack/clack_2.usd")
 
         stage = Usd.Stage.Open(usd)
 
@@ -42,7 +44,7 @@ def clack_clack():
             rep.create.from_usd(usd)
             # rig = rep.get.prim_at_path(rig_path)
 
-            csv = "/home/manifold6/Documents/RotLoc.csv"
+            csv = os.path.join(script_dir, "resources/data/RotLoc.csv")
             sequence = parse_csv(csv)
             
             translations = 200 * sequence[:,:3]
